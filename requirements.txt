@@ -1,6 +1,7 @@
-Flask==2.2.2
+pip
+Flask
 Matplotlib
-Numpy==1.21.6
-Pandas==2.0.1
+Numpy
+Pandas
 Scikit-learn
 Gunicorn
