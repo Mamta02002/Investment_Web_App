@@ -75,7 +75,8 @@ def predict():
         #return the extracted information
         arr = np.array([[data['a'],data['b'],data['c'],data['d'],data['e'],data['f'],
                          data['g'],data['h'],data['i'],data['j'],data['k']]])
-        model = pickle.load(open('ven_model.pkl','rb'))
+        with open('ven_model.pkl', 'rb') as f:
+            model = pickle.load(f)
         result = model.predict(arr.reshape(1,-1))
         result = round(result[0],2)
         
@@ -87,7 +88,8 @@ def predict1():
         # Get the form data as Python ImmutableDict datatype 
         data = request.form
         #return the extracted information
-        model = pickle.load(open('st_model.pkl','rb'))
+        with open('st_model.pkl', 'rb') as f:
+            model = pickle.load(f)
         ohe = pickle.load(open('ohe_market.pkl','rb'))
         le = pickle.load(open('le_status.pkl','rb'))
 
