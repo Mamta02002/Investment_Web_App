@@ -76,7 +76,7 @@ def predict():
         #return the extracted information
         arr = np.array([[data['a'],data['b'],data['c'],data['d'],data['e'],data['f'],
                          data['g'],data['h'],data['i'],data['j'],data['k']]])
-        model = load('ven_model.pkl')
+        model = load('venture_model.joblib')
         result = model.predict(arr.reshape(1,-1))
         result = round(result[0],2)
         
@@ -88,9 +88,9 @@ def predict1():
         # Get the form data as Python ImmutableDict datatype 
         data = request.form
         #return the extracted information
-        model = load('st_model.pkl')
-        ohe = pickle.load(open('ohe_market.pkl','rb'))
-        le = pickle.load(open('le_status.pkl','rb'))
+        model = load('status_model.joblib')
+        ohe = load('ohe_market.joblib')
+        le = load('le_status.joblib')
 
         c= ohe.transform(np.array(f" {data['c']} ").reshape(1,-1)).toarray()
         test_point = [data['a'],data['b']]
