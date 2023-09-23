@@ -1,6 +1,6 @@
-flask
-matplotlib
-numpy
-pandas
-scikit-learn
-gunicorn
+Flask==2.2.2
+Matplotlib
+Numpy==1.24.3
+Pandas==2.0.1
+Scikit-learn
+Gunicorn
