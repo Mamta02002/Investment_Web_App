@@ -1,5 +1,6 @@
 pip
 Flask
+Pickle
 Matplotlib
 Numpy
 Pandas
