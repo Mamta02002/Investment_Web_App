@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, url_for, redirect
 
 import numpy as np
 import pickle
+from joblib import dump, load
 
 app=Flask(__name__)
 @app.route("/",methods=["GET"])
@@ -75,8 +76,7 @@ def predict():
         #return the extracted information
         arr = np.array([[data['a'],data['b'],data['c'],data['d'],data['e'],data['f'],
                          data['g'],data['h'],data['i'],data['j'],data['k']]])
-        with open('ven_model.pkl', 'rb') as f:
-            model = pickle.load(f)
+        model = load('ven_model.pkl')
         result = model.predict(arr.reshape(1,-1))
         result = round(result[0],2)
         
@@ -88,8 +88,7 @@ def predict1():
         # Get the form data as Python ImmutableDict datatype 
         data = request.form
         #return the extracted information
-        with open('st_model.pkl', 'rb') as f:
-            model = pickle.load(f)
+        model = load('st_model.pkl')
         ohe = pickle.load(open('ohe_market.pkl','rb'))
         le = pickle.load(open('le_status.pkl','rb'))
 
