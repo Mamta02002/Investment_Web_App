@@ -2,6 +2,4 @@ flask
 matplotlib
 numpy
 pandas
-tensorflow
-textblob
 scikit-learn
