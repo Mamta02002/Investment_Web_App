@@ -2,7 +2,7 @@ pip
 Flask
 Pickleshare
 Matplotlib
-Numpy
+Numpy==1.24.3
 Pandas
 Scikit-learn
 Gunicorn
