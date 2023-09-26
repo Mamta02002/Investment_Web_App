@@ -68,6 +68,11 @@ def status():
     return render_template('status.html',c = status)
 
 
+model = pickle.load(open('ven_model.pkl','rb'))
+model1 = pickle.load(open('st_model.pkl','rb'))
+ohe = pickle.load(open('ohe_market.pkl','rb'))
+le = pickle.load(open('le_status.pkl','rb'))
+
 @app.route("/predict", methods = ["GET","POST"])
 def predict():
     if request.method == 'POST':
@@ -76,10 +81,9 @@ def predict():
         #return the extracted information
         arr = np.array([[data['a'],data['b'],data['c'],data['d'],data['e'],data['f'],
                          data['g'],data['h'],data['i'],data['j'],data['k']]])
-        model = pickle.load(open('ven_model.pkl','rb'))
+        
         result = model.predict(arr.reshape(1,-1))
         result = round(result[0],2)
-        
     return render_template('prediction.html',prediction=result)
 
 @app.route("/predict1", methods = ["GET","POST"])
@@ -88,15 +92,12 @@ def predict1():
         # Get the form data as Python ImmutableDict datatype 
         data = request.form
         #return the extracted information
-        model = pickle.load(open('st_model.pkl','rb'))
-        ohe = pickle.load(open('ohe_market.pkl','rb'))
-        le = pickle.load(open('le_status.pkl','rb'))
-
+    
         c= ohe.transform(np.array(f" {data['c']} ").reshape(1,-1)).toarray()
         test_point = [data['a'],data['b']]
         test_point.extend(c[0])
         test_point = np.array(test_point)
-        result = le.inverse_transform(model.predict(test_point.reshape(1,-1)))
+        result = le.inverse_transform(model1.predict(test_point.reshape(1,-1)))
     return render_template('prediction.html',prediction1=result[0])
 
 if __name__=="__main__":
